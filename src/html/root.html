@@ -1,13 +1,59 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../output.css" rel="stylesheet">
+  <title>Deadlock</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
-<body>
-  <h1 class="">
-    Hello world!
-  </h1>
+<body class="bg-light-grey text-gray-400 font-sans flex flex-col items-center min-h-screen justify-between">
+
+  <div class="w-full max-w-4xl text-center px-4">
+    <h1 class="text-6xl font-extrabold text-white mt-16 mb-6 drop-shadow-lg tracking-wide">
+      Welcome to Deadlock
+    </h1>
+    <p class="text-lg text-gray-300 mb-8 italic">
+      "Two girls, one choice"
+    </p>
+    <div class="mb-8">
+      <button class="bg-gray-900 text-blue-600 px-16 py-2 rounded-lg font-semibold text-xl hover:text-gray-900 hover:bg-blue-600 transition-all duration-300 shadow-md">
+        Ready
+      </button>
+    </div>
+    <div class="mb-12 text-center">
+      <p class="text-gray-300 mb-2">
+        If you want anyone to join this site, type their Instagram username below:
+      </p>
+      <!-- Added flex container for input and button -->
+      <div class="flex items-center justify-center space-x-4">
+        <input 
+          id="username_input"
+          placeholder="Type the username here"
+          class="bg-gray-700 text-gray-200 border border-gray-600 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
+        />
+        <button id="inputsend" class="bg-blue-600 text-white p-2 rounded-full hover:bg-white hover:text-blue-600 transition-all duration-300">
+          <i class="fas fa-arrow-right"></i> 
+        </button>
+      </div>
+    </div>
+    <div class="absolute top-4 left-4">
+      <a href="http://localhost:5500/frontend/src/html/about.html" class="text-gray-300 hover:underline">
+        About this site
+      </a>
+    </div>
+  </div>
+  <footer class="w-full bg-gray-700 py-4 mt-16 border-t border-gray-600">
+    <div class="text-center text-gray-400">
+      <a href="#" class="hover:underline">
+        Made by Superspider.lol
+      </a>
+    </div>
+  </footer>
+  <script src="../js/main.js"></script>
+
 </body>
 </html>
+
+
+
