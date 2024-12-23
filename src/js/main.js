@@ -33,3 +33,4 @@ inputsend.addEventListener('click',()=>{
 
 })
 
+//Ive been coding for about 7hrs straight, I've reached final poetnetial!!
