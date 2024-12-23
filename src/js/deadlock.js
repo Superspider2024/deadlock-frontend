@@ -1,10 +1,15 @@
 const master = document.getElementById('master');
+const blahblah=async(player)=>{
+    const username=String(player);
+    await navigator.clipboard.writeText(username)
+
+}
+
 if(master){
     console.log('IM here', master)
 }else{
     console.log('please end me')
 }
-
 const lop=(total)=>{
     try{
     let lol=[];
@@ -37,42 +42,73 @@ const poop=async(id)=>{
     return data
 }
 
-const hehe= async(player)=>{
+const hehe= async(player,i)=>{
     try{
-    const card = document.createElement('div');
-    card.classList.add('flex', 'flex-col', 'items-center', 'bg-card-bg', 'rounded-lg', 'shadow-lg', 'w-80', 'hover:bg-card-hover', 'transition-all', 'duration-300');
-    
-    const imageContainer = document.createElement('div');
-    imageContainer.classList.add('w-80', 'h-80');
-    const image = document.createElement('img');
-    image.src = await poop(player.id);
-    image.alt = player.insta;
-    image.classList.add('w-full', 'h-full', 'object-cover', 'rounded-t-lg', 'hover:shadow-2xl', 'transition-all', 'duration-300');
-    imageContainer.appendChild(image);
-    
-    const detailsContainer = document.createElement('div');
-    detailsContainer.classList.add('bg-gray-700', 'p-4', 'rounded-b-lg', 'w-full', 'text-center');
-    
-    const name = document.createElement('p');
-    name.classList.add('text-white', 'text-xl', 'font-bold');
-    name.textContent = player.insta;
-    
-    const points = document.createElement('p');
-    points.classList.add('text-gray-400');
-    points.textContent = `Points: ${player.votes}`;
-    
-    const rank = document.createElement('p');
-    rank.classList.add('text-gray-400');
-    rank.textContent = `Rank: ${lastk(player.insta)}`;
-    
-    detailsContainer.appendChild(name);
-    detailsContainer.appendChild(points);
-    detailsContainer.appendChild(rank);
-    
-    card.appendChild(imageContainer);
-    card.appendChild(detailsContainer);
+        const card = document.createElement('div');
+        card.id=i
+        card.classList.add('flex', 'flex-col', 'items-center', 'bg-card-bg', 'rounded-lg', 'shadow-lg', 'w-80', 'hover:bg-card-hover', 'transition-all', 'duration-300');
+        
+        const imageContainer = document.createElement('div');
+        imageContainer.classList.add('w-80', 'h-80');
+        const image = document.createElement('img');
+        image.id=`image${i}`
+        image.src = await poop(player.id);
+        image.alt = player.insta;
+        image.classList.add('w-full', 'h-full', 'object-cover', 'rounded-t-lg', 'hover:shadow-2xl', 'transition-all', 'duration-300');
+        imageContainer.appendChild(image);
+        
+        const detailsContainer = document.createElement('div');
+        detailsContainer.classList.add('bg-gray-700', 'p-4', 'rounded-b-lg', 'w-full', 'text-center');
+        
+        const name = document.createElement('p');
+        name.classList.add('text-white', 'text-xl', 'font-bold');
+        name.textContent = player.insta;
+        
+        const points = document.createElement('p');
+        points.classList.add('text-gray-400');
+        points.textContent = `Points: ${player.votes}`;
+        
+        const rank = document.createElement('p');
+        rank.classList.add('text-gray-400');
+        rank.textContent = `Rank: ${await lastk(player.insta)}`;
+        
+        detailsContainer.appendChild(name);
+        detailsContainer.appendChild(points);
+        detailsContainer.appendChild(rank);
+        
+        card.appendChild(imageContainer);
+        card.appendChild(detailsContainer);
 
-    master.appendChild(card)
+    
+        master.appendChild(card)
+
+    card.addEventListener('click', async () => {
+        const winner = i === 0 ? 'image0' : 'image1';
+        const loser = i === 0 ? 'image1' : 'image0';
+
+        const winAlt = document.getElementById(winner).alt;
+        const loseAlt = document.getElementById(loser).alt;
+
+        const url = `http://localhost:3000/api/vote`;
+
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                win: winAlt,
+                loss: loseAlt,
+            }),
+        });
+        const data = await response.json()
+        if (response.status === 201) {
+            master.innerHTML='';
+            await main1()
+            return;
+        }else{
+            throw new Error("Errro sending votes", response.status, data)
+        }})
 
     }catch(e){
         throw e;
@@ -91,31 +127,27 @@ const lastk=async(player1)=>{
     }
 
     const data = await response.json()
+    const yo = String(data.rank)
 
-    return data.rank;
+    return yo;
 }
 
 const lup= async()=>{
     try{
     let bruv = JSON.parse(localStorage.getItem('sequence'))
     console.log(bruv)
-    const url='http://localhost:3000/'
-
-    const response= await fetch(url,{
+    const url=`http://localhost:3000/`
+    const response = await fetch(url,{
         method:'GET'
     })
-
-    if(!response){
-        alert("Server not responding")
-    }
-
-    const data = await response.json()
+    const data= await response.json();
     for(let i=0;i<=1;i++){
-        const main = data.find(e=> e.id===bruv[i])
-        console.log(main)
-        await hehe(main)
-        const lol=bruv.splice(i,1)
+        const main2 = data.find(e=> e.id===bruv[i])
+        console.log(main2)
+        await hehe(main2,i)
+        let lol=await bruv.splice(i,1)
         localStorage.setItem('sequence',JSON.stringify(lol))
+        console.log(bruv)
 
     }
     }catch(e){
@@ -125,7 +157,6 @@ const lup= async()=>{
 }
 
 const main1= async()=>{
-        if(localStorage.getItem("sequence")){
             try{
                 const url = 'http://localhost:3000/'
             
@@ -150,19 +181,12 @@ const main1= async()=>{
                     console.log(e.message)
                     return
                 }
-        }else{
-            console.log('Images stored in localStorage in previous session')
-            await lup()
-            return
-        }
-    
     }
     
 
 
 const main=async()=>{
-    await main1()
+    await main1();
 }
 
 document.addEventListener('DOMContentLoaded',main)
-
