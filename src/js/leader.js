@@ -3,6 +3,7 @@ const search = document.getElementById('search');
 const inputsend1 = document.getElementById('inputsend1')
 
 const bro = async(player,pop)=>{
+    try{
 
     const account = document.createElement('div');
     account.classList.add('flex', 'justify-between', 'text-lg', 'text-nice-grey', 'py-2', 'border-b', 'border-gray-600');
@@ -34,9 +35,13 @@ const bro = async(player,pop)=>{
     account.appendChild(rankContainer);
 
     main.appendChild(account);
+    }catch(e){
+        console.log(e.message)
+    }
 }
 
 const lmao = async(blah)=>{
+    try{
     const url=`http://localhost:3000/api/images/${blah.id}`
 
     const response = await fetch(url,{
@@ -46,10 +51,14 @@ const lmao = async(blah)=>{
     const data1 = await response.json()
     const data2= String(data1)
     return data2
+    }catch(e){
+        throw new Error('Issue with the images api')
+    }
 }
 
 
 document.addEventListener('DOMContentLoaded', async ()=>{
+    try{
 
     const url = 'http://localhost:3000/app/leaderboards'
 
@@ -66,12 +75,17 @@ document.addEventListener('DOMContentLoaded', async ()=>{
     for(let i=0;i<data.length;i++){
         await bro(data[i],i)
     }
+
+    }catch(e){
+        console.log(e.message)
+    }
 })
 
 
 inputsend1.addEventListener('click', async()=>{
+    try{
     const player1= search.value
-    if(player1==''){
+    if(player1===''){
         location.reload();
 
     }
@@ -91,7 +105,9 @@ inputsend1.addEventListener('click', async()=>{
 
     main.innerHTML='';
     await bro(data121.insta,data121.rank);
-
+    }catch(e){
+        console.log(e.message)
+    }
     
 })
 
