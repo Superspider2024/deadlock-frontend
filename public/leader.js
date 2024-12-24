@@ -16,12 +16,12 @@ const bro = async(player,pop)=>{
     imageContainer.appendChild(playerImage);
 
     const nameContainer = document.createElement('div');
-    nameContainer.classList.add('w-1/4', 'text-center');
+    nameContainer.classList.add('w-1/4', 'text-center mr-2');
     nameContainer.textContent = player.insta;
 
 
     const votes = document.createElement('div');
-    votes.classList.add('w-1/4', 'text-center');
+    votes.classList.add('w-1/4', 'text-center ml-4');
     votes.textContent = player.votes;
 
     const rankContainer = document.createElement('div');
