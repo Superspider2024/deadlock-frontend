@@ -1,7 +1,6 @@
 const usernameInput = document.getElementById('username_input')
 const inputsend = document.getElementById('inputsend')
 
-
 inputsend.addEventListener('click',()=>{
     const bro = usernameInput.value;
 

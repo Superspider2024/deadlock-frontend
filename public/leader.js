@@ -1,7 +1,6 @@
 const main = document.getElementById('main');
 const search = document.getElementById('search');
 const inputsend1 = document.getElementById('inputsend1')
-
 const bro = async(player,pop)=>{
     try{
 
