@@ -21,7 +21,7 @@ const bro = async(player,pop)=>{
 
 
     const votes = document.createElement('div');
-    votes.classList.add('w-1/4', 'text-center', 'ml-4');
+    votes.classList.add('w-1/4', 'text-center', 'ml-2','p-2');
     votes.textContent = player.votes;
 
     const rankContainer = document.createElement('div');
