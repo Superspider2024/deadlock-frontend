@@ -38,7 +38,7 @@ const poop=async(id)=>{
     }
 
     const data = await response.json()
-    const data2=data1.replace(/[\n]+/g, '');
+    const data2=data.replace(/[\n]+/g, '');
 
     return data2
 }
