@@ -5,6 +5,8 @@ const blahblah=async(player)=>{
 
 }
 
+let great=[];
+
 if(master){
     console.log('IM here', master)
 }else{
@@ -47,15 +49,36 @@ const hehe= async(player,i)=>{
     try{
         const card = document.createElement('div');
         card.id=i
-        card.classList.add('flex', 'flex-col', 'items-center', 'bg-card-bg', 'rounded-lg', 'shadow-lg', 'w-80', 'hover:bg-card-hover', 'transition-all', 'duration-300');
-        
+        //card.classList.add('flex', 'flex-col', 'items-center', 'bg-card-bg', 'rounded-lg', 'shadow-lg', 'w-80', 'hover:bg-card-hover', 'transition-all', 'duration-300');
+        card.classList.add(
+            'flex', 
+            'flex-col', 
+            'items-center', 
+            'bg-card-bg', 
+            'rounded-lg', 
+            'shadow-lg', 
+            'w-full',  // Changed to 'w-full' to make cards responsive
+            'sm:w-80',  // On small screens (sm) the card takes up 80% width
+            'hover:bg-card-hover', 
+            'transition-all', 
+            'duration-300', 
+            'm-2'  // Add margin for spacing between cards
+          );
         const imageContainer = document.createElement('div');
-        imageContainer.classList.add('w-80', 'h-80');
+        imageContainer.classList.add('w-full', 'h-80', 'sm:w-80');
         const image = document.createElement('img');
         image.id=`image${i}`
         image.src = await poop(player.id);
         image.alt = player.insta;
-        image.classList.add('w-full', 'h-full', 'object-cover', 'rounded-t-lg', 'hover:shadow-2xl', 'transition-all', 'duration-300');
+        image.classList.add(
+            'w-full',  // Ensure the image is responsive and fits its container
+            'h-full',  // Full height of its container
+            'object-cover', 
+            'rounded-t-lg', 
+            'hover:shadow-2xl', 
+            'transition-all', 
+            'duration-300'
+          );
         imageContainer.appendChild(image);
         
         const detailsContainer = document.createElement('div');
@@ -133,15 +156,10 @@ const lastk=async(player1)=>{
     return yo;
 }
 
-const lup= async()=>{
+const lup= async(data)=>{
     try{
     let bruv = JSON.parse(localStorage.getItem('sequence'))
     console.log(bruv)
-    const url=`https://deadlock-backend-production.up.railway.app/`
-    const response = await fetch(url,{
-        method:'GET'
-    })
-    const data= await response.json();
     for(let i=0;i<=1;i++){
         const main2 = data.find(e=> e.id===bruv[i])
         console.log(main2)
@@ -159,24 +177,34 @@ const lup= async()=>{
 
 const main1= async()=>{
             try{
-                const url = 'https://deadlock-backend-production.up.railway.app/'
-            
-                const response = await fetch(url,{
-                    method:'GET',
-                })
-            
-                if(!response.ok){
-                    alert("Issue loading content, this is a server error")
+                if(great.length===0){
+                    const url = 'https://deadlock-backend-production.up.railway.app/'
+                
+                    const response = await fetch(url,{
+                        method:'GET',
+                    })
+                
+                    if(!response.ok){
+                        alert("Issue loading content, this is a server error")
+                        return
+                    }
+                    const lol = await response.json()
+                    console.log(lol)
+                    let great= lol;
+                    const data = great
+                    const total = Number(data.length);
+                    localStorage.setItem("sequence", JSON.stringify(lop(total)))
+                    await lup(data)
                     return
-                }
-                const data= await response.json();
-            
+                }else{
+                console.log(great)
+                const data = great
                 const total = Number(data.length);
                 localStorage.setItem("sequence", JSON.stringify(lop(total)))
-                await lup()
+                await lup(data)
                 return
                 
-            
+                }
             
                 }catch(e){
                     console.log(e.message)
