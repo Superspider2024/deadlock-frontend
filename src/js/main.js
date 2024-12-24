@@ -6,7 +6,7 @@ inputsend.addEventListener('click',()=>{
     const bro = usernameInput.value;
 
     const lol = async (username1)=>{
-        const url = `http://localhost:3000/app/add/${username1}`;
+        const url = `https://deadlock-backend-production.up.railway.app/app/add/${username1}`;
 
 
         try{

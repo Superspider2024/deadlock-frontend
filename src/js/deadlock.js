@@ -27,7 +27,7 @@ const lop=(total)=>{
 }
 
 const poop=async(id)=>{
-    const url=`http://localhost:3000/api/images/${id}`
+    const url=`https://deadlock-backend-production.up.railway.app/api/images/${id}`
 
     const response = await fetch(url, {
         method:'GET'
@@ -89,7 +89,7 @@ const hehe= async(player,i)=>{
         const winAlt = document.getElementById(winner).alt;
         const loseAlt = document.getElementById(loser).alt;
 
-        const url = `http://localhost:3000/api/vote`;
+        const url = `https://deadlock-backend-production.up.railway.app/api/vote`;
 
         const response = await fetch(url, {
             method: 'POST',
@@ -116,7 +116,7 @@ const hehe= async(player,i)=>{
 }
 
 const lastk=async(player1)=>{
-    const url=`http://localhost:3000/app/leaderboards/${player1}`
+    const url=`https://deadlock-backend-production.up.railway.app/app/leaderboards/${player1}`
 
     const response = await fetch(url, {
         method:'GET',
@@ -136,7 +136,7 @@ const lup= async()=>{
     try{
     let bruv = JSON.parse(localStorage.getItem('sequence'))
     console.log(bruv)
-    const url=`http://localhost:3000/`
+    const url=`https://deadlock-backend-production.up.railway.app/`
     const response = await fetch(url,{
         method:'GET'
     })
@@ -158,7 +158,7 @@ const lup= async()=>{
 
 const main1= async()=>{
             try{
-                const url = 'http://localhost:3000/'
+                const url = 'https://deadlock-backend-production.up.railway.app/'
             
                 const response = await fetch(url,{
                     method:'GET',

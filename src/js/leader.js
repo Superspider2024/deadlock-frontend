@@ -42,14 +42,13 @@ const bro = async(player,pop)=>{
 
 const lmao = async(blah)=>{
     try{
-    const url=`http://localhost:3000/api/images/${blah.id}`
+    const url=`https://deadlock-backend-production.up.railway.app/api/images/${blah.id}`
 
     const response = await fetch(url,{
         method:'GET'
     })
-
     const data1 = await response.json()
-    const data2= String(data1)
+    const data2=data1.replace(/[\n]+/g, '');
     return data2
     }catch(e){
         throw new Error('Issue with the images api')
@@ -60,7 +59,7 @@ const lmao = async(blah)=>{
 document.addEventListener('DOMContentLoaded', async ()=>{
     try{
 
-    const url = 'http://localhost:3000/app/leaderboards'
+    const url = 'https://deadlock-backend-production.up.railway.app/app/leaderboards'
 
     const response = await fetch(url,{
         method:'GET',
@@ -89,7 +88,7 @@ inputsend1.addEventListener('click', async()=>{
         location.reload();
 
     }
-    const url=`http://localhost:3000/app/leaderboards/${player1}`
+    const url=`https://deadlock-backend-production.up.railway.app/app/leaderboards/${player1}`
 
     const response = await fetch(url, {
         method:'GET',
