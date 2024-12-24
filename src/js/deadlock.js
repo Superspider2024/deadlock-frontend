@@ -38,8 +38,9 @@ const poop=async(id)=>{
     }
 
     const data = await response.json()
+    const data2=data1.replace(/[\n]+/g, '');
 
-    return data
+    return data2
 }
 
 const hehe= async(player,i)=>{
