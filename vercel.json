@@ -1,0 +1,17 @@
+{
+    "rewrites": [
+      {
+        "source": "/about",
+        "destination": "/about.html"
+      },
+      {
+        "source": "/leaderboards",
+        "destination": "/leader.html"
+      },
+      {
+        "source": "/deadlock",
+        "destination": "/deadlock.html"
+      }
+    ]
+  }
+  
